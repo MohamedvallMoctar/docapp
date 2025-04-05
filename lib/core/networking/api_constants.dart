@@ -17,5 +17,6 @@ class ApiErrors{
   static const String noInternetError = "noInternetError";
   static const String loadingMessage = "loadingMessage";
   static const String retryAgainMessage = "retryAgainMessage";
+  static const String timeoutError = "timeoutError";
   static const String ok = "ok";
 }

@@ -14,14 +14,17 @@ class AppTextFormField extends StatelessWidget {
   final bool? isObscureText;
   final Widget? suffixIcon;
   final Color? backgroundColor;
+  final TextEditingController? controller;
+  final Function(String?) validator;
 
 
-  const AppTextFormField({super.key, this.contentPadding, this.focusedBorder, this.enabledBorder, this.inputTextStyle, this.hintStyle, required this.hintText, this.suffixIcon, this.isObscureText,  this.backgroundColor});
+  const AppTextFormField({super.key, this.contentPadding, this.focusedBorder, this.enabledBorder, this.inputTextStyle, this.hintStyle, required this.hintText, this.suffixIcon, this.isObscureText,  this.backgroundColor,  this.controller, required this.validator});
 
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
         isDense: true,
         contentPadding: contentPadding ?? EdgeInsets.symmetric( vertical: 18.h, horizontal: 20.w,),
@@ -31,13 +34,27 @@ class AppTextFormField extends StatelessWidget {
             width: 1.3,
           )
         ),
-        enabledBorder: enabledBorder ?? OutlineInputBorder(
+          enabledBorder: enabledBorder ?? OutlineInputBorder(
             borderSide:  const BorderSide(
               color: ColorsManager.lighterGray,
               width: 1.3,
             ),
-        borderRadius: BorderRadius.circular(16.0),
-        ),
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          errorBorder: enabledBorder ?? OutlineInputBorder(
+            borderSide:  const BorderSide(
+              color: Colors.red,
+              width: 1.3,
+            ),
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          focusedErrorBorder: enabledBorder ?? OutlineInputBorder(
+            borderSide:  const BorderSide(
+              color: Colors.red,
+              width: 1.3,
+            ),
+            borderRadius: BorderRadius.circular(16.0),
+          ),
         hintStyle: hintStyle ?? TextStyles.font14LightRegular,
         hintText: hintText,
         suffixIcon: suffixIcon,
@@ -47,6 +64,9 @@ class AppTextFormField extends StatelessWidget {
       ),
       obscureText: isObscureText ?? false,
       style: TextStyles.font14DarkBlueMedium,
+      validator: (value){
+        return validator(value);
+      },
     );
   }
 }
