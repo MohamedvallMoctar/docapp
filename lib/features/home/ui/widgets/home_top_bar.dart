@@ -22,14 +22,15 @@ class HomeTopBar extends StatelessWidget {
               'How are you today ? ',
               style: TextStyles.font12GrayRegular,
             ),
-            const Spacer(),
-            CircleAvatar(
-              radius: 24.0,
-              backgroundColor: ColorsManager.moreLighterGray ,
-              child: SvgPicture.asset("assets/svgs/notifications.svg"),
-            ),
+
           ],
-        )
+        ),
+        const Spacer(),
+        CircleAvatar(
+          radius: 24.0,
+          backgroundColor: ColorsManager.moreLighterGray ,
+          child: SvgPicture.asset("assets/svgs/notifications.svg"),
+        ),
       ],
     );
   }
